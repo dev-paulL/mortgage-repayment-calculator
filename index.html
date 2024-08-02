@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- displays site properly based on user's device -->
 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Frontend Mentor | Mortgage repayment calculator</title>
   </head>
@@ -18,7 +23,7 @@
         <form>
           <label for="amount">Mortgage Amount</label>
           <div class="form-input-wrapper form-input-wrapper--amount">
-            <input type="number" name="amount" id="amount" />
+            <input type="number" step="100" name="amount" id="amount" />
           </div>
           <label for="term">Mortgage Term</label>
           <div class="form-input-wrapper form-input-wrapper--term">
@@ -27,25 +32,50 @@
 
           <label for="rate">Interest Rate</label>
           <div div class="form-input-wrapper form-input-wrapper--rate">
-            <input type="number" name="rate" id="rate" />
+            <input type="number" step="0.01" name="rate" id="rate" />
           </div>
           <label for="term">Mortgage Type</label>
 
-          <div class="radioChoice-box"><input type="radio" name="type" id="typeChoice1" value="repayment" /> <label for="typeChoice1">Repayment</label></div>
-          <div class="radioChoice-box"><input type="radio" name="type" id="typeChoice2" value="interestOnly" /> <label for="typeChoice2">Interest Only</label></div>
-
-          <button type="submit"><img src="assets/images/icon-calculator.svg" alt="" />Calculate Repayments</button>
+          <div class="radioChoice-box">
+            <input
+              type="radio"
+              name="type"
+              id="typeChoice1"
+              value="repayment"
+            />
+            <label for="typeChoice1">Repayment</label>
+          </div>
+          <div class="radioChoice-box">
+            <input
+              type="radio"
+              name="type"
+              id="typeChoice2"
+              value="interestOnly"
+            />
+            <label for="typeChoice2">Interest Only</label>
+          </div>
         </form>
+        <button class="formBtn">
+          <img src="assets/images/icon-calculator.svg" alt="" />Calculate
+          Repayments
+        </button>
       </section>
       <article class="articleEmptyResults">
         <img src="assets/images/illustration-empty.svg" alt="" />
         <h2>Results shown here</h2>
 
-        <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+        <p>
+          Complete the form and click "calculate repayments" to see what your
+          monthly repayments would be.
+        </p>
       </article>
-      <article class="articleResults">
+      <article class="articleResults hidden">
         <h2>Your results</h2>
-        <p>Your results are shown below based on the information you provided. To adjust the results, edit the form and click "calculate repayments" again</p>
+        <p>
+          Your results are shown below based on the information you provided. To
+          adjust the results, edit the form and click "calculate repayments"
+          again
+        </p>
 
         <div class="articleResults-values">
           <div class="articleResults-monthlyRepayments">
@@ -61,6 +91,15 @@
       </article>
     </main>
 
-    <footer>Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. Coded by <a href="https://github.com/dev-paulL/mortgage-repayment-calculator">paulDev</a>.</footer>
+    <footer>
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by
+      <a href="https://github.com/dev-paulL/mortgage-repayment-calculator"
+        >paulDev</a
+      >.
+    </footer>
+
+    <script src="main.js"></script>
   </body>
 </html>

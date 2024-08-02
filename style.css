@@ -127,7 +127,7 @@ form label {
   color: var(--slate900);
 }
 
-form button {
+.formBtn {
   border-radius: 4rem;
   border: none;
   background-color: var(--lime);
@@ -142,7 +142,7 @@ form button {
   margin-top: 2rem;
 }
 
-form button img {
+.formBtn img {
   padding-right: 0.5rem;
 }
 
@@ -222,4 +222,8 @@ footer {
   font-weight: bold;
   font-size: .8rem;
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }
