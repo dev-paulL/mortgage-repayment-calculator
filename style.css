@@ -10,6 +10,8 @@
   --slate500: hsl(200, 26%, 54%);
   --slate700: hsl(200, 24%, 40%);
   --slate900: hsl(202, 55%, 16%);
+
+  --input-radius:0.4rem;
 }
 
 * {
@@ -24,12 +26,13 @@ html {
   height: 100%;
 }
 
+html {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+}
 main {
   min-height: 100vh;
   max-width: 100%;
-  font-family: "Plus Jakarta Sans", sans-serif;
-  padding: 1rem;
-  font-size: 1rem;
   display: flex;
   flex-flow: column;
 }
@@ -44,13 +47,179 @@ main {
 }
 
 input {
-  width: 100%;
   padding: 1rem;
   font-weight: bold;
-  color: var(--slate700);
+  color: var(--slate900);
   font-size: 1.2rem;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--slate500);
+  width: 100%;
 }
 
 .radioChoice-box input {
   width: initial;
+}
+
+.form-input-wrapper {
+  position: relative;
+}
+
+.form-input-wrapper::before,
+.form-input-wrapper::after {
+  top: 2px;
+  bottom: 2px;
+  position: absolute;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--slate100);
+  color: var(--slate500);
+}
+
+.form-input-wrapper::after {
+  right: 2px;
+  border-radius: 0 var(--input-radius) var(--input-radius) 0;
+}
+#amount {
+  padding-left: 4rem;
+}
+
+.form-input-wrapper--amount::before {
+  content: "£";
+  left: 2px;
+  border-radius: var(--input-radius) 0 0 var(--input-radius);
+}
+
+#term {
+  padding-right: 5rem;
+}
+.form-input-wrapper--term::after {
+  content: "years";
+}
+
+#rate {
+  padding-right: 3.5rem;
+}
+.form-input-wrapper--rate::after {
+  content: "%";
+}
+
+form label {
+  margin: 1rem 0 0.5rem 0;
+  display: inline-block;
+  color: var(--slate700);
+  font-weight: 500;
+}
+
+.radioChoice-box {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--slate500);
+  margin: 0.5rem 0;
+}
+
+.radioChoice-box label {
+  margin: 0;
+  margin-left: 0.7rem;
+  font-weight: bold;
+  color: var(--slate900);
+}
+
+form button {
+  border-radius: 4rem;
+  border: none;
+  background-color: var(--lime);
+  padding: 1rem 2rem;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--slate900);
+  margin-top: 2rem;
+}
+
+form button img {
+  padding-right: 0.5rem;
+}
+
+section {
+  padding: 1rem;
+}
+
+.articleEmptyResults, .articleResults {
+  background-color: var(--slate900);
+  width: 100%;
+  padding: 2rem;
+  color: var(--white);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+article img {
+  max-width: 60%;
+}
+article h2 {
+  margin-top: 1rem;
+}
+article p {
+  color: var(--slate300) ;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.articleResults {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.articleResults-values {
+  background: hsl(201, 56%, 11%);
+  width: 100%;
+  border-top: 3px solid var(--lime);
+  border-radius: var(--input-radius);
+  margin-top: 2rem;
+  padding:1rem;
+  line-height: 2;
+}
+
+.articleResults-monthlyRepayments p,  .articleResults-totalRepay p {
+  margin: 0;
+}
+
+.articleResults-monthlyRepayments--value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--lime);
+}
+
+hr {
+  border: 1px solid var(--slate100);
+  opacity: .2;
+  margin: .5rem 0;
+}
+
+.articleResults-totalRepay {
+  margin-top: 1rem;
+}
+
+.articleResults-totalRepay--value {
+  font-weight: bold;
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+footer {
+  background-color: var(--slate300);
+  color: var(--slate900);
+  width: 100%;
+  font-weight: bold;
+  font-size: .8rem;
+  text-align: center;
 }
