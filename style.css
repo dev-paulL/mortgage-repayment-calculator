@@ -74,6 +74,7 @@ input {
   padding: 1rem;
   background-color: var(--slate100);
   color: var(--slate500);
+  max-height: fit-content;
 }
 
 .form-input-wrapper::after {
@@ -250,6 +251,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     border-radius: 1rem;
+    box-shadow: -2px 5px 11px 5px #dbecf5;
   }
 
   body {
@@ -273,12 +275,37 @@ footer {
   .formBtn {
     width: auto;
     margin: 1.5rem 0;
+    font-size: .85rem;
+    padding: .8rem 2rem;
   }
-
+  .formBtn img {
+    width: 1.5rem;
+  }
  .term-rate-wrapper {
-  display: flex;
-  flex-flow: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  margin-top: 1rem;
+  gap: .5rem 1rem;
  }
 
+ .termLabel {
+  grid-column: 1;
+  margin: 0;
+ }
  
+ .form-input-wrapper {
+  grid-row: 2;
+ }
+
+ .rateLabel {
+  grid-column:2;
+  margin: 0;
+ }
+
+.formSection {
+  padding: 2rem;
+}
+
+
 }
