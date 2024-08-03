@@ -73,22 +73,28 @@ const calculateValues = () => {
   TYPE_INPUTS.forEach((input) => {
     if (input.checked) {
       typeValue = input.value;
+      // active styles here? or with pure css and pseudo elements
     }
   });
   // Check if not 0 (except for rate, that can be 0)
-  if (amountValue > 0 && termValue > 0 && rateValue && typeValue != "") {
+  if (amountValue > 0 && termValue > 0 && typeValue != "") {
     // Check comment above for formulas
     const monthlyRate = rateValue / 12 / 100;
     const numberOfPayments = termValue * 12;
 
-    const repaymentFactor = monthlyRate
-      ? 1 - Math.pow(1 + monthlyRate, -numberOfPayments)
-      : 1;
-    const monthlyRepayment = (amountValue * monthlyRate) / repaymentFactor;
-    const monthlyInterest = amountValue * monthlyRate;
+    let monthlyRepayment =
+      monthlyRate > 0
+        ? (amountValue * monthlyRate) /
+          (1 - Math.pow(1 + monthlyRate, -numberOfPayments))
+        : amountValue / numberOfPayments;
 
-    const overTermRepayment = monthlyRepayment * numberOfPayments;
-    const overTermInterest = overTermRepayment - amountValue;
+    let overTermRepayment =
+      monthlyRate > 0 ? monthlyRepayment * numberOfPayments : amountValue;
+
+    let overTermInterest =
+      monthlyRate > 0 ? overTermRepayment - amountValue : 0;
+
+    const monthlyInterest = amountValue * monthlyRate;
 
     ARTICLE_RESULTS.classList.remove("hidden");
     MONTHLY_REPAYMENTS.textContent =
