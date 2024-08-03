@@ -11,7 +11,7 @@
   --slate700: hsl(200, 24%, 40%);
   --slate900: hsl(202, 55%, 16%);
 
-  --input-radius:0.4rem;
+  --input-radius: 0.4rem;
 }
 
 * {
@@ -31,7 +31,6 @@ html {
   font-size: 1rem;
 }
 main {
-  min-height: 100vh;
   max-width: 100%;
   display: flex;
   flex-flow: column;
@@ -75,6 +74,7 @@ input {
   padding: 1rem;
   background-color: var(--slate100);
   color: var(--slate500);
+  max-height: fit-content;
 }
 
 .form-input-wrapper::after {
@@ -112,6 +112,17 @@ form label {
   font-weight: 500;
 }
 
+input:focus {
+  border-color: var(--lime);
+  outline: none;
+}
+
+.form-input-wrapper:focus-within::before,
+.form-input-wrapper:focus-within::after {
+  background-color: var(--lime);
+  color: var(--slate900);
+}
+
 .radioChoice-box {
   width: 100%;
   padding: 1rem;
@@ -120,13 +131,16 @@ form label {
   margin: 0.5rem 0;
 }
 
+.radioChoice-box:focus-within {
+  background-color: var(--lime);
+}
+
 .radioChoice-box label {
   margin: 0;
   margin-left: 0.7rem;
   font-weight: bold;
   color: var(--slate900);
 }
-
 .formBtn {
   border-radius: 4rem;
   border: none;
@@ -140,6 +154,7 @@ form label {
   font-size: 1.2rem;
   color: var(--slate900);
   margin-top: 2rem;
+  cursor: pointer;
 }
 
 .formBtn img {
@@ -150,11 +165,9 @@ section {
   padding: 1rem;
 }
 
-.articleEmptyResults, .articleResults {
+.results-section {
   background-color: var(--slate900);
-  width: 100%;
   padding: 2rem;
-  color: var(--white);
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -167,9 +180,10 @@ article img {
 }
 article h2 {
   margin-top: 1rem;
+  color: var(--white);
 }
 article p {
-  color: var(--slate300) ;
+  color: var(--slate300);
   margin-top: 1rem;
   line-height: 1.5;
 }
@@ -185,11 +199,12 @@ article p {
   border-top: 3px solid var(--lime);
   border-radius: var(--input-radius);
   margin-top: 2rem;
-  padding:1rem;
+  padding: 1rem;
   line-height: 2;
 }
 
-.articleResults-monthlyRepayments p,  .articleResults-totalRepay p {
+.articleResults-monthlyRepayments p,
+.articleResults-totalRepay p {
   margin: 0;
 }
 
@@ -201,8 +216,8 @@ article p {
 
 hr {
   border: 1px solid var(--slate100);
-  opacity: .2;
-  margin: .5rem 0;
+  opacity: 0.2;
+  margin: 0.5rem 0;
 }
 
 .articleResults-totalRepay {
@@ -220,10 +235,77 @@ footer {
   color: var(--slate900);
   width: 100%;
   font-weight: bold;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 63rem) {
+  main {
+    max-width: 60rem;
+    max-height: min-content;
+    background-color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 1rem;
+    box-shadow: -2px 5px 11px 5px #dbecf5;
+  }
+
+  body {
+    background-color: var(--slate100);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+  }
+
+  .results-section {
+    border-radius: 0 1rem 1rem 5rem;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .formBtn {
+    width: auto;
+    margin: 1.5rem 0;
+    font-size: .85rem;
+    padding: .8rem 2rem;
+  }
+  .formBtn img {
+    width: 1.5rem;
+  }
+ .term-rate-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  margin-top: 1rem;
+  gap: .5rem 1rem;
+ }
+
+ .termLabel {
+  grid-column: 1;
+  margin: 0;
+ }
+ 
+ .form-input-wrapper {
+  grid-row: 2;
+ }
+
+ .rateLabel {
+  grid-column:2;
+  margin: 0;
+ }
+
+.formSection {
+  padding: 2rem;
+}
+
+
 }
