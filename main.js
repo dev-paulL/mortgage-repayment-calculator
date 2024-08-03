@@ -96,7 +96,7 @@ const calculateValues = () => {
     select(".termErrorText").textContent = "";
   }
 
-  // Rate can be null 
+  // Rate can be 0 
   if (isNaN(rateValue) || rateValue < 0) {
     select(".form-input-wrapper--rate").classList.add("errorRequired");
     select(".rateErrorText").textContent = errorRequiredText;

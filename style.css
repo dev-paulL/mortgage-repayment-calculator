@@ -245,14 +245,18 @@ hr {
 }
 
 footer {
-  background-color: var(--slate300);
-  color: var(--slate900);
+  background-color: var(--slate900);
+  color: var(--slate100);
   width: 100%;
   font-weight: bold;
   font-size: 0.8rem;
   text-align: center;
+  padding: 1rem .5rem;
 }
 
+footer a {
+  color: var(--lime);
+}
 .hidden {
   display: none;
 }
