@@ -1,26 +1,23 @@
-const AMOUNT_INPUT = document.querySelector("#amount");
-const TERM_INPUT = document.querySelector("#term");
-const RATE_INPUT = document.querySelector("#rate");
+const select = (item) => document.querySelector(item);
+
+const AMOUNT_INPUT = select("#amount");
+const TERM_INPUT = select("#term");
+const RATE_INPUT = select("#rate");
 const TYPE_INPUTS = document.querySelectorAll(
   'input[type="radio"][name="type"]'
 );
-const CLEAR_ALL = document.querySelector(".clearAll");
-const ARTICLE_EMPTY_RESULTS = document.querySelector(".articleEmptyResults");
-const ARTICLE_RESULTS = document.querySelector(".articleResults");
-const FORM_BTN = document.querySelector(".formBtn");
-const MONTHLY_REPAYMENTS = document.querySelector(
-  ".articleResults-monthlyRepayments--value"
-);
-const TOTAL_REPAYMENT = document.querySelector(
-  ".articleResults-totalRepay--value"
-);
+const CLEAR_ALL = select(".clearAll");
+const ARTICLE_EMPTY_RESULTS = select(".articleEmptyResults");
+const ARTICLE_RESULTS = select(".articleResults");
+const FORM_BTN = select(".formBtn");
+const MONTHLY_REPAYMENTS = select(".articleResults-monthlyRepayments--value");
+const TOTAL_REPAYMENT = select(".articleResults-totalRepay--value");
 
 CLEAR_ALL.addEventListener("click", () => {
   document
     .querySelectorAll("input")
     .forEach((i) => (i.type === "radio" ? (i.checked = false) : (i.value = 0)));
 });
-
 
 /* Loan Payment = Amount x (Interest Rate/12) */
 
@@ -69,52 +66,93 @@ const calculateValues = () => {
   const amountValue = parseFloat(AMOUNT_INPUT.value);
   const termValue = parseFloat(TERM_INPUT.value);
   const rateValue = parseFloat(RATE_INPUT.value);
-  let typeValue;
+
+  let typeValue = "";
 
   TYPE_INPUTS.forEach((input) => {
     if (input.checked) {
       typeValue = input.value;
     }
   });
-  // Rate can be 0
 
-  if (amountValue > 0 && termValue > 0 && typeValue !== "") {
-    // Check comment above for formulas
-    const monthlyRate = rateValue / 12 / 100;
-    const numberOfPayments = termValue * 12;
+  const errorRequiredText = "This field is required";
 
-    let monthlyRepayment =
-      monthlyRate > 0
-        ? (amountValue * monthlyRate) /
-          (1 - Math.pow(1 + monthlyRate, -numberOfPayments))
-        : amountValue / numberOfPayments;
-
-    let overTermRepayment =
-      monthlyRate > 0 ? monthlyRepayment * numberOfPayments : amountValue;
-
-    let overTermInterest =
-      monthlyRate > 0 ? overTermRepayment - amountValue : 0;
-
-    const monthlyInterest = amountValue * monthlyRate;
-
-    ARTICLE_RESULTS.classList.remove("hidden");
-    MONTHLY_REPAYMENTS.textContent =
-      typeValue === "repayment"
-        ? "£" + monthlyRepayment.toFixed(2)
-        : typeValue === "interestOnly"
-        ? "£" + monthlyInterest.toFixed(2)
-        : "";
-    TOTAL_REPAYMENT.textContent =
-      typeValue === "repayment"
-        ? "£" + overTermRepayment.toFixed(2)
-        : typeValue === "interestOnly"
-        ? "£" + overTermInterest.toFixed(2)
-        : "";
-
-    ARTICLE_EMPTY_RESULTS.classList.add("hidden");
+  let hasError = false;
+  if (isNaN(amountValue) || amountValue <= 0) {
+    select(".form-input-wrapper--amount").classList.add("errorRequired");
+    select(".amountErrorText").textContent = errorRequiredText;
+    hasError = true;
   } else {
-    alert("Please Fill the form");
+    select(".form-input-wrapper--amount").classList.remove("errorRequired");
+    select(".amountErrorText").textContent = "";
   }
+
+  if (isNaN(termValue) || termValue <= 0) {
+    select(".form-input-wrapper--term").classList.add("errorRequired");
+    select(".termErrorText").textContent = errorRequiredText;
+    hasError = true;
+  } else {
+    select(".form-input-wrapper--term").classList.remove("errorRequired");
+    select(".termErrorText").textContent = "";
+  }
+
+  // Rate can be 0 
+  if (isNaN(rateValue) || rateValue < 0) {
+    select(".form-input-wrapper--rate").classList.add("errorRequired");
+    select(".rateErrorText").textContent = errorRequiredText;
+    hasError = true;
+  } else {
+    select(".form-input-wrapper--rate").classList.remove("errorRequired");
+    select(".rateErrorText").textContent = "";
+  }
+
+  if (typeValue === "") {
+    select(".typeErrorText").textContent = errorRequiredText;
+    hasError = true;
+  } else {
+    select(".typeErrorText").textContent = "";
+  }
+
+  if (hasError) {
+    ARTICLE_RESULTS.classList.add("hidden");
+    ARTICLE_EMPTY_RESULTS.classList.remove("hidden");
+    return;
+  }
+
+  const monthlyRate = rateValue / 12 / 100;
+  const numberOfPayments = termValue * 12;
+
+  let monthlyRepayment, overTermRepayment, overTermInterest;
+
+  if (monthlyRate > 0) {
+    monthlyRepayment =
+      (amountValue * monthlyRate) /
+      (1 - Math.pow(1 + monthlyRate, -numberOfPayments));
+    overTermRepayment = monthlyRepayment * numberOfPayments;
+    overTermInterest = overTermRepayment - amountValue;
+  } else {
+    monthlyRepayment = amountValue / numberOfPayments;
+    overTermRepayment = amountValue;
+    overTermInterest = 0;
+  }
+
+  const monthlyInterest = amountValue * monthlyRate;
+
+  ARTICLE_RESULTS.classList.remove("hidden");
+  MONTHLY_REPAYMENTS.textContent =
+    typeValue === "repayment"
+      ? "£" + monthlyRepayment.toFixed(2)
+      : typeValue === "interestOnly"
+      ? "£" + monthlyInterest.toFixed(2)
+      : "";
+  TOTAL_REPAYMENT.textContent =
+    typeValue === "repayment"
+      ? "£" + overTermRepayment.toFixed(2)
+      : typeValue === "interestOnly"
+      ? "£" + overTermInterest.toFixed(2)
+      : "";
+
+  ARTICLE_EMPTY_RESULTS.classList.add("hidden");
 };
 
 FORM_BTN.addEventListener("click", calculateValues);
