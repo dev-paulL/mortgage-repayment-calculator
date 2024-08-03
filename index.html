@@ -23,11 +23,17 @@
         <form>
           <label for="amount">Mortgage Amount</label>
           <div class="form-input-wrapper form-input-wrapper--amount">
-            <input type="number" step="100" name="amount" id="amount" />
+            <input
+              type="number"
+              required="required"
+              step="100"
+              name="amount"
+              id="amount"
+            />
           </div>
           <label for="term">Mortgage Term</label>
           <div class="form-input-wrapper form-input-wrapper--term">
-            <input type="number" name="term" id="term" />
+            <input type="number" required="required" name="term" id="term" />
           </div>
 
           <label for="rate">Interest Rate</label>
@@ -42,6 +48,7 @@
               name="type"
               id="typeChoice1"
               value="repayment"
+              checked="true"
             />
             <label for="typeChoice1">Repayment</label>
           </div>
@@ -80,12 +87,12 @@
         <div class="articleResults-values">
           <div class="articleResults-monthlyRepayments">
             <p>Your monthly repayments</p>
-            <p class="articleResults-monthlyRepayments--value">£1,797.74</p>
+            <p class="articleResults-monthlyRepayments--value"></p>
           </div>
           <hr />
           <div class="articleResults-totalRepay">
             <p>Total you'll repay over the term</p>
-            <p class="articleResults-totalRepay--value">£539,322.94</p>
+            <p class="articleResults-totalRepay--value"></p>
           </div>
         </div>
       </article>

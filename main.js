@@ -75,7 +75,7 @@ const calculateValues = () => {
       typeValue = input.value;
     }
   });
-
+  // Check if not 0 (except for rate, that can be 0)
   if (amountValue > 0 && termValue > 0 && rateValue && typeValue != "") {
     // Check comment above for formulas
     const monthlyRate = rateValue / 12 / 100;
