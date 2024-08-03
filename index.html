@@ -25,7 +25,7 @@
           <div class="form-input-wrapper form-input-wrapper--amount">
             <input
               type="number"
-              required="required"
+              required
               step="100"
               name="amount"
               id="amount"
@@ -34,7 +34,7 @@
           <div class="term-rate-wrapper">
             <label class="termLabel" for="term">Mortgage Term</label>
             <div class="form-input-wrapper form-input-wrapper--term">
-              <input type="number" required="required" name="term" id="term" />
+              <input type="number" required name="term" id="term" />
             </div>
 
             <label for="rate" class="rateLabel">Interest Rate</label>
@@ -44,18 +44,20 @@
           </div>
 
           <label for="type" class="typeLabel">Mortgage Type</label>
+
           <div class="radioChoice-box">
             <input
               type="radio"
               name="type"
               id="typeChoice1"
               value="repayment"
-              checked="true"
+              required
             />
             <label for="typeChoice1">Repayment</label>
           </div>
           <div class="radioChoice-box">
             <input
+              required
               type="radio"
               name="type"
               id="typeChoice2"

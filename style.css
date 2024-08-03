@@ -38,11 +38,13 @@ main {
 
 .formSection h1 {
   font-weight: bold;
+  line-height: 1.5;
 }
 
 .formSection .clearAll {
   color: var(--slate500);
   text-decoration: underline dotted;
+  line-height: 1.5;
 }
 
 input {
@@ -131,8 +133,10 @@ input:focus {
   margin: 0.5rem 0;
 }
 
-.radioChoice-box:focus-within {
-  background-color: var(--lime);
+.radioChoice-box:has(input:checked) {
+  /* background-color: var(--lime); */
+  background-color:hsl(61deg 100% 82.7% / 60%);
+  border: 1px solid var(--lime);
 }
 
 .radioChoice-box label {
@@ -252,8 +256,17 @@ footer {
     grid-template-columns: 1fr 1fr;
     border-radius: 1rem;
     box-shadow: -2px 5px 11px 5px #dbecf5;
+
   }
 
+  h1 {
+    display: inline-block;
+  }
+
+  .clearAll {
+    float: right;
+    transform:translateY(.5rem);
+  }
   body {
     background-color: var(--slate100);
     padding: 2rem;

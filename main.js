@@ -21,6 +21,7 @@ CLEAR_ALL.addEventListener("click", () => {
     .forEach((i) => (i.type === "radio" ? (i.checked = false) : (i.value = 0)));
 });
 
+
 /* Loan Payment = Amount x (Interest Rate/12) */
 
 /* P = A x I
@@ -73,11 +74,11 @@ const calculateValues = () => {
   TYPE_INPUTS.forEach((input) => {
     if (input.checked) {
       typeValue = input.value;
-      // active styles here? or with pure css and pseudo elements
     }
   });
-  // Check if not 0 (except for rate, that can be 0)
-  if (amountValue > 0 && termValue > 0 && typeValue != "") {
+  // Rate can be 0
+
+  if (amountValue > 0 && termValue > 0 && typeValue !== "") {
     // Check comment above for formulas
     const monthlyRate = rateValue / 12 / 100;
     const numberOfPayments = termValue * 12;
